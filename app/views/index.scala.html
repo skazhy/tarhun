@@ -1,4 +1,7 @@
-@(tags: List[String])
+@(tags: List[String], images: Iterable[String])
 
 @main("Tarhun", tags) {
+    @images.map { image =>
+      <img src="@image">
+    }
 }

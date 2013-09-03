@@ -40,3 +40,11 @@ a {
   color: #aaa;
   background-color: white;
 }
+
+body > aside, #content {
+  float: left;
+}
+
+#content {
+  margin: 0 10px;
+}

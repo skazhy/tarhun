@@ -1,4 +1,7 @@
-@(tag: String, tags: List[String])
+@(tag: String, tags: List[String], images: List[String])
 
 @main("Tarhun - #" + tag, tags) {
+    @images.map { image =>
+      <img src="@image">
+    }
 }
