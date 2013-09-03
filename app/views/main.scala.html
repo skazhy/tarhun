@@ -23,7 +23,10 @@
     </pre></a>
     <ul id="tags">
       @tags.map { tag =>
-        <li><a class="tag" href="@{routes.Application.tag(tag)}">@tag</a></li>
+        <li>
+          <a class="tag" href="@{routes.Application.tag(tag)}">@tag</a>
+          <a title="random!" href="@{routes.Application.random(tag)}">%</a>
+        </li>
       }
     </ul>
   </aside>

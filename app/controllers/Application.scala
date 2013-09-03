@@ -1,5 +1,7 @@
 package controllers
 
+import scala.util.Random
+
 import play.api._
 import play.api.mvc._
 
@@ -28,6 +30,13 @@ object Application extends Controller {
     val tags = allTags
     val images = imagesForTag(tag)
     Ok(views.html.tag(tag, tags, images))
+  }
+
+  def random(tag: String) = Action {
+      val tags = allTags
+      val imgs = imagesForTag(tag)
+      val images = if(imgs.size > 0) List(Random.shuffle(imgs).head) else List()
+      Ok(views.html.tag(tag, tags, images))
   }
 
 }
