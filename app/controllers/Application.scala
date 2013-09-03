@@ -8,6 +8,7 @@ import play.api.mvc._
 object Application extends Controller {
 
   def allTags : List[String] = List("wat", "win")
+  implicit val tags: List[String] = allTags
 
   def allImages : Map[String, List[String]] = {
       Map("win" -> List(
@@ -21,22 +22,19 @@ object Application extends Controller {
   }
 
   def index = Action {
-    val tags = allTags
     val images = allImages.map(_._2).flatten.toList
-    Ok(views.html.index(tags, images))
+    Ok(views.html.index(images))
   }
 
   def tag(tag: String) = Action {
-    val tags = allTags
     val images = imagesForTag(tag)
-    Ok(views.html.tag(tag, tags, images))
+    Ok(views.html.tag(tag, images))
   }
 
   def random(tag: String) = Action {
-      val tags = allTags
       val imgs = imagesForTag(tag)
       val images = if(imgs.size > 0) List(Random.shuffle(imgs).head) else List()
-      Ok(views.html.tag(tag, tags, images))
+      Ok(views.html.tag(tag, images))
   }
 
 }

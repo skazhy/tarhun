@@ -1,6 +1,6 @@
-@(tags: List[String], images: Iterable[String])
+@(images: Iterable[String])(implicit tags: List[String])
 
-@main("Tarhun", tags) {
+@main("Tarhun") {
     @images.map { image =>
       <img src="@image">
     }
