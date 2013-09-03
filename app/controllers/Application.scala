@@ -3,18 +3,27 @@ package controllers
 import scala.util.Random
 
 import play.api._
+import play.api.Play.current
 import play.api.mvc._
+import com.typesafe.plugin.RedisPlugin
 
 object Application extends Controller {
 
-  def allTags : List[String] = List("wat", "win")
+  val pool = Play.application.plugin(classOf[RedisPlugin]).get.sedisPool
+
+  def allTags : List[String] = {
+    pool.withClient { client =>
+      return client.smembers("tags").toList
+    }
+  }
+
   implicit val tags: List[String] = allTags
 
   def allImages : Map[String, List[String]] = {
-      Map("win" -> List(
-        "http://i.imgur.com/iOjD0q1.png",
-        "http://i.imgur.com/KdxWrIZ.png"
-      ))
+    val tags = allTags
+    pool.withClient { client =>
+      return tags.map((t: String) => (t, client.smembers("tags:"+t).toList)).toMap
+    }
   }
 
   def imagesForTag(tag: String) : List[String] = {
