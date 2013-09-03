@@ -12,4 +12,9 @@ object Application extends Controller {
     Ok(views.html.index(tags))
   }
 
+  def tag(tag: String) = Action {
+    val tags = allTags
+    Ok(views.html.tag(tag, tags))
+  }
+
 }

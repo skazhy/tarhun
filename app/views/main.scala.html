@@ -10,7 +10,7 @@
 
 <body>
   <aside>
-    <pre id="logo">
+    <a href="/"><pre id="logo">
 |=|
 | |
 | |
@@ -20,10 +20,10 @@
 |t.h.n|
 |-----|
 |_____|
-    </pre>
+    </pre></a>
     <ul id="tags">
       @tags.map { tag =>
-        <li><a class="tag" href="#">@tag</a></li>
+        <li><a class="tag" href="@{routes.Application.tag(tag)}">@tag</a></li>
       }
     </ul>
   </aside>

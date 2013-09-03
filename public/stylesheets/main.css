@@ -9,6 +9,7 @@ body > aside {
 
 a {
   text-decoration: none;
+  color: inherit;
 }
 
 #logo {
@@ -29,7 +30,6 @@ a {
 
 .tag {
   padding: 0;
-  color: inherit;
 }
 
 .tag:before {

@@ -13,6 +13,7 @@ class ApplicationSpec extends Specification {
     "send 404 on a bad request" in {
       running(FakeApplication()) {
         route(FakeRequest(GET, "/baikal")) must beNone
+        route(FakeRequest(GET, "/tag/")) must beNone
       }
     }
 
@@ -24,5 +25,15 @@ class ApplicationSpec extends Specification {
         contentType(home) must beSome.which(_ == "text/html")
       }
     }
+
+    "render the tag page" in {
+      running(FakeApplication()) {
+        val home = route(FakeRequest(GET, "/tag/test")).get
+
+        status(home) must equalTo(OK)
+        contentType(home) must beSome.which(_ == "text/html")
+      }
+    }
+
   }
 }
