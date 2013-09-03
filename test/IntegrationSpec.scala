@@ -15,10 +15,10 @@ class IntegrationSpec extends Specification {
 
         browser.goTo("http://localhost:3333/")
         browser.$("#logo").getText() must not be equalTo("")
+        browser.$(".tag").size must be equalTo(2)
 
       }
     }
-
   }
 
 }

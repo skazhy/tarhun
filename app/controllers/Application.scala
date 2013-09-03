@@ -5,8 +5,11 @@ import play.api.mvc._
 
 object Application extends Controller {
 
+  def allTags : List[String] = List("wat", "win")
+
   def index = Action {
-    Ok(views.html.index())
+    val tags = allTags
+    Ok(views.html.index(tags))
   }
 
 }

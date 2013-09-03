@@ -1,4 +1,4 @@
-@(title: String)(content: Html)
+@(title: String, tags: List[String])(content: Html)
 
 <!DOCTYPE html>
 <html>
@@ -9,7 +9,8 @@
 </head>
 
 <body>
-  <pre id="logo">
+  <aside>
+    <pre id="logo">
 |=|
 | |
 | |
@@ -19,7 +20,13 @@
 |t.h.n|
 |-----|
 |_____|
-  </pre>
+    </pre>
+    <ul id="tags">
+      @tags.map { tag =>
+        <li><a class="tag" href="#">@tag</a></li>
+      }
+    </ul>
+  </aside>
   @content
 </body>
 </html>
